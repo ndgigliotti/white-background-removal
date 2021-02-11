@@ -1,6 +1,6 @@
 # white-background-removal
 
-A CLI tool for removing white backgrounds from images.
+A CLI tool for erasing white backgrounds from images.
 
 Replace white backgrounds with transparency while optionally ignoring holes in the foreground object.
 
