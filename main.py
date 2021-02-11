@@ -42,9 +42,9 @@ logger.debug("dst: %s", args.dst)
 
 for entry in os.scandir(args.src):
     img = ski.io.imread(entry.path)
-    logger.debug("Loaded %s.", entry.name)
+    logger.info("Loaded %s.", entry.name)
     img = erase_white_background(img, thresh=args.thresh, sigma=args.blur, hole_thresh=args.hole)
-    logger.debug("Erased white background from %s.", entry.name)
+    logger.info("Erased white background from %s.", entry.name)
     fpath = os.path.join(args.dst, os.path.splitext(entry.name)[0] + ".png")
     ski.io.imsave(fpath, img)
-    logger.debug("Saved image as %s.", os.path.basename(fpath))
+    logger.info("Saved image as %s.", os.path.basename(fpath))
