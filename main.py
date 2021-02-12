@@ -3,11 +3,9 @@ import logging
 import argparse
 import skimage as ski
 import skimage.io
-import win_unicode_console
 from image import erase_white_background
 import util
 
-win_unicode_console.streams.enable()
 util.setup_root_logger()
 logger = logging.getLogger(__name__)
 ski.io.use_plugin("imageio")
