@@ -4,7 +4,7 @@ A CLI tool for erasing white backgrounds from images.
 Replace white backgrounds with transparency while ignoring small holes in the foreground. Consistent, conservative, and fast.
 
 ## Motivation
-White-background product images are common in the world of ecommerce and dropshipping. If your website has a background, using transparency-backed product images will make your products appear to float directly over the background. Alternatively, you might wish to replace the white backgrounds with new ones. With this program, you'll have your work cut out for you.
+White-background product images are common in the world of ecommerce and dropshipping. If your website has a background, using transparency-backed product images will make your products appear to float directly over the background. Alternatively, you might wish to replace the white backgrounds with new ones. With this tool, you'll have your work cut out for you.
 
 ## Core Algorithms
 ##### Global Luminosity Threshold (GLT)
