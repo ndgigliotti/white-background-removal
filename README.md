@@ -1,7 +1,7 @@
 # whitebg-erase
 A CLI script for erasing white backgrounds from images.
 
-Replace white backgrounds with transparency while ignoring small holes in the foreground.
+Delicately replace white backgrounds with transparency while ignoring small holes in the foreground.
 
 ## Motivation
 White-background product images are common in the world of ecommerce and dropshipping. If your website has a background, using transparency-backed product images will make your products appear to float directly over the background.
