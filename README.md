@@ -7,7 +7,6 @@ Replace white backgrounds with transparency while ignoring small holes in the fo
 White-background product images are common in the world of ecommerce and dropshipping. If your website has a background, using transparency-backed product images will make your products appear to float directly over the background.
 
 ## Core Algorithm
-
 This script uses a sophisticated **global luminosity threshold algorithm**. It basically works by erasing every pixel which is above the luminosity threshold, a process which is simple and fast.
 
 But there are problems with the algorithm as described. The first problem is that it cuts off too much at the foreground's boundaries. Sometimes chunks of foreground near the boundary will be missing, and almost always the boundaries are left jagged. The second problem is that it erases too much from within the foreground. Images with glare hotspots are turned into swiss cheese&mdash;a most undesirable result.
@@ -26,7 +25,6 @@ python main.py C:\Users\usr\Pictures\product_images
 The program will process each image in the source directory and output it as a PNG file. The results will be stored in `C:\Users\usr\Pictures\product_images results`. You can specify a custom destination directory using the optional argument `--dst`.
 
 ## Optional Arguments
-
 | Argument               | Effect                                            | Default                  | Type  |
 | ---------------------- | ------------------------------------------------- | ------------------------ | ----- |
 | `-h`, `--help`         | Show help message and exit.                       | N/A                      | N/A   |
