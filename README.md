@@ -27,16 +27,16 @@ The program will process each image in the source directory and output it as a P
 
 ## Optional Arguments
 
-| Argument         | Effect                                            | Default                  | Type  |
-| ---------------- | ------------------------------------------------- | ------------------------ | ----- |
-| `-h`, `--help`   | Show help message and exit.                       | N/A                      | N/A   |
-| `--check-border` | Ensure white border before processing.            | N/A                      | N/A   |
-| `--dst`          | Set the destination directory for results.        | src + ' results'         | str   |
-| `--lum   `       | Luminosity threshold above which is white.        | 0.95                     | float |
-| `--blur`         | Sigma for Gaussian filter (higher for more blur). | 1.0                      | float |
-| `--hole`         | Ignore holes with area below this threshold.      | 750                      | int   |
-| `--batch`        | Batch size for multithreading.                    | 20                       | int   |
-| `--workers`      | Number of workers for multithreading.             | CPU count                | int   |
+| Argument               | Effect                                            | Default                  | Type  |
+| ---------------------- | ------------------------------------------------- | ------------------------ | ----- |
+| `-h`, `--help`         | Show help message and exit.                       | N/A                      | N/A   |
+| `-b`, `--check-border` | Ensure white border before processing.            | N/A                      | N/A   |
+| `--dst`                | Set the destination directory for results.        | src + ' results'         | str   |
+| `--lum`                | Luminosity threshold above which is white.        | 0.95                     | float |
+| `--blur`               | Sigma for Gaussian filter (higher for more blur). | 1.0                      | float |
+| `--hole`               | Ignore holes with area below this threshold.      | 750                      | int   |
+| `--batch`              | Batch size for multithreading.                    | 20                       | int   |
+| `--workers`            | Number of workers for multithreading.             | CPU count                | int   |
 
 ## Technologies Used
 - [scikit-image](https://scikit-image.org/)

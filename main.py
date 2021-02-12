@@ -16,7 +16,7 @@ ski.io.use_plugin("pil")
 
 parser = argparse.ArgumentParser(description="Erase white backgrounds from images.")
 parser.add_argument("src")
-parser.add_argument("--check-border",
+parser.add_argument("-b", "--check-border",
                     help="ensure white border before processing",
                     action="store_true")
 parser.add_argument("--dst",
