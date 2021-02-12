@@ -35,10 +35,9 @@ The program will process each image in the source directory and output it as a P
 | `--blur`       | Sigma for Gaussian filter (higher for more blur). | 1.0                      | float |
 | `--hole`       | Ignore holes below this area threshold.           | 750                      | int   |
 
-## Known Issues
-
-- Program assumes the input images are RGB.
-- Only processes one image at a time.
+## Technologies Used
+- [scikit-image](https://scikit-image.org/)
+- [NumPy](https://numpy.org/)
 
 ## Todo
 - [ ] Accommodate wide range of color schemes.
