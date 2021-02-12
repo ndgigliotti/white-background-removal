@@ -1,7 +1,7 @@
 import os
 import sys
+import time
 import logging
-import timeit
 import datetime
 from definitions import DATE_FORMAT, DATETIME_FORMAT, LOG_FORMAT, LOG_DIR
 
@@ -64,5 +64,4 @@ def today_name(ext=None):
 
 
 def elapsed(start):
-    finish = timeit.default_timer()
-    return datetime.timedelta(seconds=finish-start)
+    return datetime.timedelta(seconds=time.perf_counter()-start)

@@ -1,4 +1,3 @@
-# Definitions - keep at project root level
 from os import path
 
 PROJECT_ROOT_DIR = path.dirname(path.abspath(__file__))
