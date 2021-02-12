@@ -26,7 +26,7 @@ Run the script with the source directory (`src`) as its sole positional argument
 python main.py C:\Users\usr\Pictures\product_images
 ```
 
-The program will process each image in the source directory and output it as a PNG file. The results will be stored in `C:\Users\usr\Pictures\product_images results`. You can specify a custom destination directory using the optional argument `--dst`.
+The program will process each image in the source directory and output it as a PNG file. The results will be stored in `...\product_images results`. You can specify a custom destination directory using the optional argument `--dst`.
 
 #### Optional Arguments
 | Argument               | Effect                                            | Default                  | Type  |
