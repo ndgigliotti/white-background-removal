@@ -1,6 +1,7 @@
 import os
 import sys
 import logging
+import timeit
 import datetime
 from definitions import DATE_FORMAT, DATETIME_FORMAT, LOG_FORMAT, LOG_DIR
 
@@ -60,3 +61,8 @@ def now_name(ext=None):
 
 def today_name(ext=None):
     return date_to_name(datetime.date.today(), ext=ext)
+
+
+def elapsed(start):
+    finish = timeit.default_timer()
+    return datetime.timedelta(seconds=finish-start)
