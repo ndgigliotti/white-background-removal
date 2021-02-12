@@ -1,4 +1,4 @@
-# white-background-removal
+# whitebg-erase
 A CLI script for erasing white backgrounds from images.
 
 Replace white backgrounds with transparency while ignoring small holes in the foreground.
