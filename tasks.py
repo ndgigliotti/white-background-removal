@@ -36,8 +36,6 @@ def check_border(pool, images, entries):
         if not passed:
             del images[i]
             failed.append(entries.pop(i))
-        logger.debug("passed=%s, len(images)=%i, len(entries)=%i, len(failed)=%i",
-                     passed, len(images), len(entries), len(failed))
     if failed:
         logger.info("Skipping %i images:", len(failed))
         _log_strings([x.name for x in failed])
