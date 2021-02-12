@@ -8,7 +8,7 @@ White-background product images are common in the world of ecommerce and dropshi
 
 ## Core Algorithm
 
-The crux of this script is a sophisticated **global luminosity threshold algorithm**. It basically works by erasing every pixel which is above the luminosity threshold, a process which is simple and fast.
+This script uses a sophisticated **global luminosity threshold algorithm**. It basically works by erasing every pixel which is above the luminosity threshold, a process which is simple and fast.
 
 But there are problems with the algorithm as described. The first problem is that it cuts off too much at the foreground's boundaries. Sometimes chunks of foreground near the boundary will be missing, and almost always the boundaries are left jagged. The second problem is that it erases too much from within the foreground. Images with glare hotspots are turned into swiss cheese&mdash;a most undesirable result.
 
