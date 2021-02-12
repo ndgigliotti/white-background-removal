@@ -1,8 +1,20 @@
 # white-background-removal
-
 A CLI tool for erasing white backgrounds from images.
 
-Replace white backgrounds with transparency while optionally ignoring holes in the foreground object.
+Replace white backgrounds with transparency while optionally ignoring holes in the foreground.
+
+## Motivation
+White-background product images are common in the world of ecommerce and dropshipping. If your website has a background, using transparency-backed product images will make your products appear to float directly over the background.
+
+## Core Algorithm
+
+The crux of this application is a sophisticated **global luminosity threshold algorithm**. It basically works by erasing every pixel which is above the luminosity threshold, a process which is simple and fast.
+
+But there are problems with the algorithm as described. The first problem is that it cuts off too much at the foreground's boundaries. Sometimes chunks of foreground near the boundary will be missing, and almost always the boundaries are left jagged. The second problem is that it erases too much from within the foreground. Images with glare hotspots are turned into swiss cheese&mdash;a most undesirable result.
+
+The solution is to introduce two layers of sophistication. The first problem can be solved by preprocessing the images with blur. Adding blur helps prevent the algorithm from erasing too much at the boundaries and results in a smoother boundary overall. The second problem can be solved by ignoring small holes. This preserves such things as glare hotspots and eyeball-whites.
+
+Even with these added layers of sophistication, output images sometimes require further doctoring. The algorithm is both robust and fast, but alas, not perfect.
 
 ## Usage
 Run the program with the source directory (`src`) as its sole positional argument. The source directory is the directory containing the white-background images you want to process.
