@@ -32,7 +32,7 @@ def check_border(pool, images, entries):
     logger.info("%i of %i images have white border.",
                 test_results.count(True), len(test_results))
     failed = []
-    for i, passed in enumerate(test_results):
+    for i, passed in reversed(list(enumerate(test_results))):
         if not passed:
             del images[i]
             failed.append(entries.pop(i))
