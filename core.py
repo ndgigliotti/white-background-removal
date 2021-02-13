@@ -10,14 +10,6 @@ import skimage.segmentation
 logger = logging.getLogger(__name__)
 
 
-def denormalize(img: np.ndarray):
-    return ski.util.img_as_ubyte(img)
-
-
-def normalize(img: np.ndarray):
-    return ski.util.img_as_float64(img)
-
-
 def get_border(img: np.ndarray, thick=10):
     mask = np.zeros_like(img)
     inner_square = img[thick:-thick, thick:-thick]
@@ -36,7 +28,7 @@ def white_border_test(img: np.ndarray, cut=0.95, thick=10):
 def rgb2rgba(img: np.ndarray):
     alpha = np.full(img.shape[:2], 255, dtype=np.uint8)
     if img.dtype == np.float64:
-        alpha = normalize(alpha)
+        alpha = ski.util.img_as_float64(alpha)
     img = np.dstack((img, alpha))
     return img
 
