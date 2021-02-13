@@ -62,7 +62,7 @@ def process_images(pool, func, images, entries):
 
 
 def save_images(pool, dst, images, entries):
-    """Save `images` to disk in `dst` using the filenames in `entries`."""
+    """Save `images` to disk in `dst`, returning the new paths."""
     start = time.perf_counter()
     fnames = [os.path.splitext(x.name)[0] + ".png" for x in entries]
     fpaths = [os.path.join(dst, x) for x in fnames]
