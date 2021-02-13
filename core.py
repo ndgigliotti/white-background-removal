@@ -26,8 +26,8 @@ def get_border(img: np.ndarray, thick=10):
     return border
 
 
-def white_border_test(img: np.ndarray, cut=240, thick=10):
-    img = denormalize(ski.color.rgb2gray(img))
+def white_border_test(img: np.ndarray, cut=0.95, thick=10):
+    img = ski.color.rgb2gray(img)
     border = get_border(img, thick=thick)
     mean = border.mean()
     return mean >= cut
