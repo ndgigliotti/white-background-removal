@@ -52,7 +52,7 @@ args.dst = args.dst or os.path.join(os.path.dirname(args.src),
                                     os.path.basename(args.src) + " results")
 os.makedirs(args.dst, exist_ok=True)
 logger.debug("Parameters:")
-util.log_strings(vars(args), logger.debug)
+util.pprint_log(vars(args), logger.debug)
 logger.debug("\n")
 entries = sorted(os.scandir(args.src), key=lambda x: x.name)
 _erase_whitebg = functools.partial(core.erase_white_background,

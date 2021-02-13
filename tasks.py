@@ -14,7 +14,7 @@ def load_images(pool, entries):
     start = time.perf_counter()
     images = pool.map(ski.io.imread, [x.path for x in entries])
     logger.info("Loaded %i images:", len(images))
-    util.log_strings([x.name for x in entries], logger.info)
+    util.pprint_log([x.name for x in entries], logger.info)
     logger.info(util.elapsed(start))
     logger.info("\n")
     return images
@@ -37,7 +37,7 @@ def check_border(pool, images, entries):
         # Log the names in their original order
         failed = list(reversed(failed))
         logger.info("Skipping %i images:", len(failed))
-        util.log_strings([x.name for x in failed], logger.info)
+        util.pprint_log([x.name for x in failed], logger.info)
     logger.info(util.elapsed(start))
     logger.info("\n")
 
@@ -47,7 +47,7 @@ def process_images(pool, func, images, entries):
     start = time.perf_counter()
     images = pool.map(func, images)
     logger.info("Erased white background from %i images:", len(images))
-    util.log_strings([x.name for x in entries], logger.info)
+    util.pprint_log([x.name for x in entries], logger.info)
     logger.info(util.elapsed(start))
     logger.info("\n")
     return images
@@ -60,7 +60,7 @@ def save_images(pool, dst, images, entries):
     fpaths = [os.path.join(dst, x) for x in fnames]
     pool.starmap(ski.io.imsave, zip(fpaths, images))
     logger.info("Saved %i images:", len(fpaths))
-    util.log_strings(fnames, logger.info)
+    util.pprint_log(fnames, logger.info)
     logger.info(util.elapsed(start))
     logger.info("\n")
     return fpaths

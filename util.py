@@ -27,11 +27,11 @@ def silence_loggers(*names):
         logger.propagate = False
 
 
-def log_strings(strings, method):
-    """Pretty print a collection of strings to log."""
-    strings = pformat(strings).split("\n")
-    for string in strings:
-        method(string)
+def pprint_log(item, method):
+    """Pretty print a data structure to log."""
+    lines = pformat(item).split("\n")
+    for line in lines:
+        method(line)
 
 
 def datetime_from_name(name):
