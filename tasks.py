@@ -32,7 +32,8 @@ def check_border(pool, images, entries):
     logger.info("%i of %i images have white border.",
                 test_results.count(True), len(test_results))
     failed = []
-    # Iterate in reverse to avoid shifting the indices we want to remove
+    # Iterate in reverse to avoid shifting
+    # the indices of the objects we want to remove
     for i, passed in reversed(list(enumerate(test_results))):
         if not passed:
             del images[i]
