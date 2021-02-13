@@ -1,7 +1,6 @@
 import os
 import logging
 import time
-from pprint import pformat
 import skimage as ski
 import skimage.io
 import core
@@ -10,19 +9,12 @@ import util
 logger = logging.getLogger(__name__)
 
 
-def _log_strings(strings: list, level=logging.INFO):
-    """Pretty print a list of strings to the log."""
-    strings = pformat(strings).split("\n")
-    for string in strings:
-        logger.log(level, string)
-
-
 def load_images(pool, entries):
     """Load images from paths in `entries`."""
     start = time.perf_counter()
     images = pool.map(ski.io.imread, [x.path for x in entries])
     logger.info("Loaded %i images:", len(images))
-    _log_strings([x.name for x in entries])
+    util.log_strings([x.name for x in entries], logger.info)
     logger.info(util.elapsed(start))
     logger.info("\n")
     return images
@@ -45,7 +37,7 @@ def check_border(pool, images, entries):
         # Log the names in their original order
         failed = list(reversed(failed))
         logger.info("Skipping %i images:", len(failed))
-        _log_strings([x.name for x in failed])
+        util.log_strings([x.name for x in failed], logger.info)
     logger.info(util.elapsed(start))
     logger.info("\n")
 
@@ -55,7 +47,7 @@ def process_images(pool, func, images, entries):
     start = time.perf_counter()
     images = pool.map(func, images)
     logger.info("Erased white background from %i images:", len(images))
-    _log_strings([x.name for x in entries])
+    util.log_strings([x.name for x in entries], logger.info)
     logger.info(util.elapsed(start))
     logger.info("\n")
     return images
@@ -68,7 +60,7 @@ def save_images(pool, dst, images, entries):
     fpaths = [os.path.join(dst, x) for x in fnames]
     pool.starmap(ski.io.imsave, zip(fpaths, images))
     logger.info("Saved %i images:", len(fpaths))
-    _log_strings(fnames)
+    util.log_strings(fnames, logger.info)
     logger.info(util.elapsed(start))
     logger.info("\n")
     return fpaths

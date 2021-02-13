@@ -3,6 +3,7 @@ import sys
 import time
 import logging
 import datetime
+from pprint import pformat
 from definitions import DATE_FORMAT, DATETIME_FORMAT, LOG_FORMAT, LOG_DIR
 
 
@@ -24,6 +25,13 @@ def silence_loggers(*names):
     for name in names:
         logger = logging.getLogger(name)
         logger.propagate = False
+
+
+def log_strings(strings, method):
+    """Pretty print a collection of strings to log."""
+    strings = pformat(strings).split("\n")
+    for string in strings:
+        method(string)
 
 
 def datetime_from_name(name):

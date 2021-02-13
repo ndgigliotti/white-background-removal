@@ -51,14 +51,17 @@ args.src = os.path.abspath(args.src)
 args.dst = args.dst or os.path.join(os.path.dirname(args.src),
                                     os.path.basename(args.src) + " results")
 os.makedirs(args.dst, exist_ok=True)
-
+logger.debug("Parameters:")
+util.log_strings(vars(args), logger.debug)
+logger.debug("\n")
 entries = sorted(os.scandir(args.src), key=lambda x: x.name)
 _erase_whitebg = functools.partial(core.erase_white_background,
                                    lum_thresh=args.lum_thresh,
                                    sigma=args.gaussian,
                                    hole_thresh=args.hole_thresh)
 done = []
-print("\n")
+if logger.level > logging.DEBUG:
+    print("\n")
 start = time.perf_counter()
 with ThreadPool(processes=args.workers) as pool:
     for batch in more_itertools.chunked(entries, args.batch_size):
