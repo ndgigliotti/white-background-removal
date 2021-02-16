@@ -17,7 +17,9 @@ The solution is to introduce two layers of sophistication. The first problem can
 Even with these added layers of sophistication, output images sometimes require further doctoring. The algorithm is both robust and fast, but alas, not perfect. It is designed to be consistent and conservative.
 
 ##### White Border Test (WBT)
-Another important algorithm is the **White Border Test**, designed to rapidly decide whether an image has a white background. Since GLT is useless on images with non-white backgrounds, it is best to skip over them. The algorithm first converts an image to greyscale (to get only its luminosity information) and then computes the mean of its border pixels. An image passes the test if and only if its border-mean is above the predetermined threshold.
+Another important algorithm is the **White Border Test**, designed to rapidly decide whether an image has a white background. Since GLT is useless on images with non-white backgrounds, it is best to skip over them.
+
+The test algorithm takes an image and proceeds as follows. First, convert the image to grayscale to get its luminosity. Then, extract all 4 sides of the image's border and calculate the mean luminosity of each. Finally, check if at least 3 out of 4 sides are above the predetermined luminosity threshold. If this is the case, then the image passes the test&mdash;otherwise not.
 
 ## Usage
 Run the script with the source directory (`src`) as its sole positional argument. The source directory is the directory containing the white-background images you want to process.
@@ -33,11 +35,14 @@ The program will process each image in the source directory and output it as a P
 | ---------------------- | ------------------------------------------------- | ------------------------ | ----- |
 | `-h`, `--help`         | Show help message and exit.                       | N/A                      | N/A   |
 | `-b`, `--check-border` | Ensure white border before processing.            | N/A                      | N/A   |
+| `-c`, `--copy-failed`  | Copy and set aside images which fail border test. | N/A                      | N/A   |
 | `-D`, `--dst`          | Set the destination directory for results.        | src + ' results'         | str   |
 | `-L`, `--lum-thresh`   | Luminosity threshold above which is white.        | 0.95                     | float |
 | `-G`, `--gaussian`     | Sigma for Gaussian filter (higher for more blur). | 1.0                      | float |
 | `-H`, `--hole-thresh`  | Ignore holes with area below this threshold.      | 750                      | int   |
-| `-B`, `--batch-size`   | Number of images per batch.                       | 20                       | int   |
+| `-H`, `--border-thick` | Thickness in pixels for border test.              | 10                       | int   |
+| `-H`, `--border-sides` | Minimum white sides to pass border test.          | 3                        | int   |
+| `-B`, `--batch-size`   | Number of images per batch.                       | 50                       | int   |
 | `-W`, `--workers`      | Number of threads to create.                      | CPU count                | int   |
 
 

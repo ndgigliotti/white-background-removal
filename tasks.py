@@ -1,4 +1,5 @@
 import os
+import shutil
 import logging
 import time
 import skimage as ski
@@ -20,10 +21,18 @@ def load_images(pool, entries):
     return images
 
 
-def check_border(pool, images, entries):
+def _copy_failed(entries):
+    root = os.path.dirname(os.path.dirname(entries[0].path))
+    dst = os.path.join(root, "failed_border_test")
+    os.makedirs(dst, exist_ok=True)
+    for entry in entries:
+        shutil.copy(entry.path, os.path.join(dst, entry.name))
+
+
+def check_border(pool, func, images, entries, copy_failed):
     """Run the white border test, then remove images that fail (in place)."""
     start = time.perf_counter()
-    test_results = pool.map(core.white_border_test, images)
+    test_results = pool.map(func, images)
     logger.info("%i of %i images have white border.",
                 test_results.count(True), len(test_results))
     failed = []
@@ -38,6 +47,8 @@ def check_border(pool, images, entries):
         failed = list(reversed(failed))
         logger.info("Skipping %i images:", len(failed))
         util.pprint_log([x.name for x in failed], logger.info)
+        if copy_failed:
+            _copy_failed(failed)
     logger.info(util.elapsed(start))
     logger.info("\n")
 

@@ -20,6 +20,9 @@ parser.add_argument("src")
 parser.add_argument("-b", "--check-border",
                     help="ensure white border before processing",
                     action="store_true")
+parser.add_argument("-c", "--copy-failed",
+                    help="copy and set aside images which fail border test",
+                    action="store_true")
 parser.add_argument("-D", "--dst",
                     help="destination dir for results (default: 'X results')",
                     default=None, metavar="")
@@ -35,10 +38,18 @@ parser.add_argument("-H", "--hole-thresh",
                     type=int,
                     help="hole area threshold (default: 750)",
                     default=750, metavar="")
+parser.add_argument("-T", "--border-thick",
+                    type=int,
+                    help="thickness in pixels for border test (default: 10)",
+                    default=10, metavar="")
+parser.add_argument("-S", "--border-sides",
+                    type=int,
+                    help="min white sides to pass border test (default: 3)",
+                    default=3, metavar="")
 parser.add_argument("-B", "--batch-size",
                     type=int,
-                    help="number of images per batch (default: 20)",
-                    default=20, metavar="")
+                    help="number of images per batch (default: 50)",
+                    default=50, metavar="")
 parser.add_argument("-W", "--workers",
                     type=int,
                     help="number of threads to create (default: CPU count)",
@@ -59,6 +70,10 @@ _erase_whitebg = functools.partial(core.erase_white_background,
                                    lum_thresh=args.lum_thresh,
                                    sigma=args.gaussian,
                                    hole_thresh=args.hole_thresh)
+_border_test = functools.partial(core.white_border_test,
+                                 lum_thresh=args.lum_thresh,
+                                 thick=args.border_thick,
+                                 n_sides=args.border_sides)
 done = []
 if logger.level > logging.DEBUG:
     print("\n")
@@ -67,7 +82,7 @@ with ThreadPool(processes=args.workers) as pool:
     for batch in more_itertools.chunked(entries, args.batch_size):
         images = tasks.load_images(pool, batch)
         if args.check_border:
-            tasks.check_border(pool, images, batch)
+            tasks.check_border(pool, _border_test, images, batch, args.copy_failed)
         images = tasks.process_images(pool, _erase_whitebg, images, batch)
         saved = tasks.save_images(pool, args.dst, images, batch)
         done.extend(saved)
