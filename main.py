@@ -23,6 +23,9 @@ parser.add_argument("-b", "--check-border",
 parser.add_argument("-c", "--copy-failed",
                     help="copy and set aside images which fail border test",
                     action="store_true")
+parser.add_argument("-m", "--mark-bounds",
+                    help="mark boundary instead of erasing background",
+                    action="store_true")
 parser.add_argument("-D", "--dst",
                     help="destination dir for results (default: 'X results')",
                     default=None, metavar="")
@@ -69,7 +72,8 @@ entries = sorted(os.scandir(args.src), key=lambda x: x.name)
 _erase_whitebg = functools.partial(core.erase_white_background,
                                    lum_thresh=args.lum_thresh,
                                    sigma=args.gaussian,
-                                   hole_thresh=args.hole_thresh)
+                                   hole_thresh=args.hole_thresh,
+                                   mark_bounds=args.mark_bounds)
 _border_test = functools.partial(core.white_border_test,
                                  lum_thresh=args.lum_thresh,
                                  thick=args.border_thick,

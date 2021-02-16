@@ -36,6 +36,7 @@ The program will process each image in the source directory and output it as a P
 | `-h`, `--help`         | Show help message and exit.                       | N/A                      | N/A   |
 | `-b`, `--check-border` | Ensure white border before processing.            | N/A                      | N/A   |
 | `-c`, `--copy-failed`  | Copy and set aside images which fail border test. | N/A                      | N/A   |
+| `-m`, `--mark-bounds`  | Mark the boundary instead of erasing background.  | N/A                      | N/A   |
 | `-D`, `--dst`          | Set the destination directory for results.        | src + ' results'         | str   |
 | `-L`, `--lum-thresh`   | Luminosity threshold above which is white.        | 0.95                     | float |
 | `-G`, `--gaussian`     | Sigma for Gaussian filter (higher for more blur). | 1.0                      | float |
@@ -48,7 +49,7 @@ The program will process each image in the source directory and output it as a P
 
 ## Todo
 - [ ] Accommodate wide range of color schemes.
-- [X] Add white border test for checking if an image has a white background.
+- [X] Add test for checking if an image has a white background.
 - [X] Implement and test multithreading.
 - [ ] Write docstrings.
 
