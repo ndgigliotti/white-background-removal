@@ -19,7 +19,7 @@ Even with these added layers of sophistication, output images sometimes require 
 ##### White Border Test (WBT)
 Another important algorithm is the **White Border Test**, designed to rapidly decide whether an image has a white background. Since GLT is useless on images with non-white backgrounds, it is best to skip over them.
 
-The test algorithm takes an image and proceeds as follows. First, convert the image to grayscale to get its luminosity. Then, extract all 4 sides of the image's border and calculate the mean luminosity of each. Finally, check if at least 3 out of 4 sides are above the predetermined luminosity threshold. If this is the case, then the image passes the test&mdash;otherwise not.
+The test algorithm takes an image and proceeds as follows. First, convert the image to grayscale to get its luminosity. Then, extract all four border sides and calculate the mean luminosity of each. Finally, check if at least 3 out of 4 sides are above the predetermined luminosity threshold. If this is the case, then the image passes the test&mdash;otherwise not.
 
 ## Usage
 Run the script with the source directory (`src`) as its sole positional argument. The source directory is the directory containing the white-background images you want to process.
