@@ -40,7 +40,7 @@ The program will process each image in the source directory and output it as a P
 | `-L`, `--lum-thresh`   | Luminosity threshold above which is white.        | 0.95                     | float |
 | `-G`, `--gaussian`     | Sigma for Gaussian filter (higher for more blur). | 1.0                      | float |
 | `-H`, `--hole-thresh`  | Ignore holes with area below this threshold.      | 750                      | int   |
-| `-T`, `--border-thick` | Thickness in pixels for border test.              | 10                       | int   |
+| `-T`, `--border-thick` | Border thickness in pixels for border test.       | 10                       | int   |
 | `-S`, `--border-sides` | Minimum white sides to pass border test.          | 3                        | int   |
 | `-B`, `--batch-size`   | Number of images per batch.                       | 50                       | int   |
 | `-W`, `--workers`      | Number of threads to create.                      | CPU count                | int   |
